@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<main class="bg-light">
+    {% include 'charactersBlock.html' %}
+
+    <div class="seasonal-container">
+        <div class="container mt-5 mb-3">
+            <div class="row">
+                {% for triumph in triumphs %}
+                {% include 'triumphCard.html' %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

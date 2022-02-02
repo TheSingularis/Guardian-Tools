@@ -1,0 +1,104 @@
+@font-face {
+  font-family: NeueHaasGroteskReg;
+  src: url(font/NHaasGroteskTXPro-55Rg.ttf);
+}
+
+@font-face {
+  font-family: NeueHaasGroteskBold;
+  src: url(font/NHaasGroteskTXPro-75Bd.ttf);
+}
+
+body {
+  font-family: NeueHaasGroteskReg;
+}
+
+img {
+    border-style: none;
+}
+
+.invert {
+   -webkit-filter: invert(1);
+   filter: invert(1);
+}
+
+.mult-chars-container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: stretch;
+    width: 100%;
+}
+
+.char-wrapper {
+    position: relative;
+    min-width: 200px;
+    max-width: 400px;
+    width: auto;
+    height: 100%;
+    margin: 5px 10px 2em;
+    box-sizing: border-box;
+    box-shadow: -2px 5px 10px rgba(0,0,0,.5),2px 5px 10px rgba(0,0,0,.5);
+    border-radius: 5px;
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.image-background {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.char-name {
+    top: -10px;
+
+    left: 85px;
+    font-size: 30px;
+    color: #eee;
+    letter-spacing: .1ch;
+
+    position: absolute;
+    height: 65px;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    text-shadow: 0 0 20px #000,0 0 5px #000;
+}
+
+.char-title {
+    position: absolute;
+    top: 43px;
+    left: 65px;
+    color: #e490dc;
+    font-weight: 400;
+    padding: 0px 50px;
+    letter-spacing: 0;
+    background: linear-gradient(90deg,transparent 0,rgba(228,144,220,.2) 25%,rgba(228,144,220,.2) 75%,transparent);
+    text-shadow: 1px 1px 2px rgba(0,0,0,.5),-1px 1px 2px rgba(0,0,0,.5),0 -1px 2px rgba(0,0,0,.5);
+}
+
+.char-light::before {
+    content: "";
+    width: .4em;
+    height: .4em;
+    display: inline-block;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%230ff' viewBox='0 0 400 400'%3E%3Cpath d='M0 200Q130 130 200 0q70 130 200 200-130 70-200 200Q130 270 0 200h130q40 30 70 70 30-40 70-70-40-30-70-70-30 40-70 70z'/%3E%3C/svg%3E"),radial-gradient(closest-side,transparent,#000 40%,rgba(0,0,0,.5) 50%,transparent);
+    background-repeat: no-repeat;
+    text-shadow: 0 0 5px #000;
+    margin-bottom: .5em;
+    margin-right: .05em;
+}
+
+.char-light {
+    right: 20px;
+    font-size: 40px;
+    color: #0ff;
+
+    position: absolute;
+    top: 0;
+    height: 65px;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    text-shadow: 0 0 20px #000, 0 0 5px #000;
+}

@@ -1,0 +1,51 @@
+{% extends "bootstrap/base.html" %}
+
+{% block title %}Guardian Tools{% endblock %}
+
+{% block head %}
+{{ super() }}
+<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+<link rel="icon" href="{{ url_for('static', filename = 'favicon.ico') }}" type="image/x-icon">
+<link rel="stylesheet" href="/static/main.css">
+<link rel="stylesheet" href="/static/card.css">
+{% endblock %}
+{% block body %}
+{% block navbar %}
+
+<nav class="navbar navbar-expand-lg <!--sticky-top--> navbar-dark bg-dark">
+    <a href="#" class="navbar-brand">Guardian Tools</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/seasonal">Seasonal Challenges</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/vault">Vault</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url }}">Login</a>
+            </li>
+        </ul>
+    </div>
+
+</nav>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    {% block page_content %}{% endblock %}
+</div>
+
+{% endblock %}
+{% endblock %}

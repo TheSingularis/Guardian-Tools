@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="emblem-image">
+    <img class="image-background" src="https://www.bungie.net/{{ backgroundImage }}">
+    <img class="image-icon" src="https://www.bungie.net/{{ emblemImage }}">
+    <p>Welcome, {{ character }}!</p></br>
+    <p>Your current light level is: {{ lightLevel }} </p>
+</div>
+
+<div class="inventory-container">
+    {% for item in invItems %}
+    {% for dict_item in weaponList %}
+
+    {% if invItems[item] in dict_item['bucket'] %}
+    {% include 'itemBlock.html' %}
+    {% endif %}
+
+    {% endfor %}
+    {% endfor %}
+
+</div>
+
+{% endblock %}

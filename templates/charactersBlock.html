@@ -1,0 +1,18 @@
+<div class="mult-chars-container">
+    {% for char in characters %}
+    <div class="char-wrapper">
+        <div class="char-display">
+            <img class="image-background" src="https://www.bungie.net/{{ char.backgroundImage }}">
+            <div class="char-name">
+                {{ char.charClass }}
+            </div>
+            <div class="char-title">
+                {{ char.title }}
+            </div>
+            <div class="char-light">
+                {{ char.lightLevel }}
+            </div>
+        </div>
+    </div>
+    {% endfor -%}
+</div>
