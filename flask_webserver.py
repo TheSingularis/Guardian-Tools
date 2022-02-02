@@ -67,9 +67,6 @@ def seasonal():
 
     characters = GetCharacters(accountSummary, all_data)
 
-    # with open("RecordsOutput.json", "w") as text_file:
-    #    text_file.write(str(progress.json()['Response']).replace("'", "\"").replace("True", "true").replace("False", "false"))
-    # cum()
     return render_template('seasonal.html',
                            triumphs=triumphs,
                            characters=characters
@@ -84,11 +81,7 @@ def vault():
     vault = getVault(oauth_session, session.get('membershipType'), session.get('destinyMembershipId'))
     weaponList = parseVault(oauth_session, vault, all_data)
 
-    #print('User Summary: ' + str(userSummary.json()['Response']))
-    #print('Account Summary: ' + str(accountSummary.json()['Response']))
-    #print('Character Summary: ' + str(accountSummary.json()['Response']['characters']['data']))
     firstChar = list(accountSummary.json()['Response']['characters']['data'])[0]
-    # print(firstChar)
 
     return render_template('vault.html',
                            invItems=invItems,

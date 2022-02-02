@@ -55,18 +55,10 @@ def parseProgress(session, progressResult, all_data, firstChar):
     loop_count = 0
 
     for item in progressResult.json()['Response']['characterRecords']['data'][firstChar]['records']:
-        # print(progressResult.json()['Response']['characterRecords']['data'][firstChar]['records'])
         if len(list(all_data['DestinyRecordDefinition'][int(item)]['parentNodeHashes'])) > 0:
             parentNodeHash = all_data['DestinyRecordDefinition'][int(item)]['parentNodeHashes'][0]
             if parentNodeHash in parentNodes:
                 record = all_data['DestinyRecordDefinition'][int(item)]
-
-                #progress = progressResult.json()['Response']['characterRecords']['data'][firstChar]['records'][item]['objectives'][0]['progress']
-                #completionValue = progressResult.json()['Response']['characterRecords']['data'][firstChar]['records'][item]['objectives'][0]['completionValue']
-
-                #print(str(progress) + " / " + str(completionValue))
-
-                # make a list of the objectives for each record
 
                 if len(list(record['objectiveHashes'])) > 0:
                     objectives = []
