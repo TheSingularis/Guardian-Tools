@@ -33,7 +33,7 @@ refresh_token_url = access_token_url
 
 # Open Manifest:
 print("Opening Manifest...")
-with open('manifest.pickle', 'rb') as data:
+with open('data/manifest.pickle', 'rb') as data:
     all_data = pickle.load(data)
 print("Finished!")
 
@@ -166,4 +166,4 @@ def is_valid_state(state):
 
 # Main program - call app:
 if __name__ == '__main__':
-    app.run(debug=True, port=5000, ssl_context=('cert.pem', 'key.pem'))
+    app.run(debug=True, port=5000, ssl_context=('auth/cert.pem', 'auth/key.pem'))
