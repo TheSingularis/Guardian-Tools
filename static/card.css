@@ -25,13 +25,13 @@ body {
 }
 
 .badge span {
-    background-color: #fffbec;
-    width: 60px;
+    background-color: #e6ffe0;
+    width: 50px;
     height: 25px;
     padding-bottom: 3px;
     border-radius: 5px;
     display: flex;
-    color: #fed85d;
+    color: #73f84a;
     justify-content: center;
     align-items: center;
 }
@@ -42,7 +42,7 @@ body {
 }
 
 .progress div {
-    background-color: red;
+    background-color: steelblue;
 }
 
 .text1 {

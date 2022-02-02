@@ -55,25 +55,76 @@ def parseProgress(session, progressResult, all_data, firstChar):
     loop_count = 0
 
     for item in progressResult.json()['Response']['characterRecords']['data'][firstChar]['records']:
+        # print(progressResult.json()['Response']['characterRecords']['data'][firstChar]['records'])
         if len(list(all_data['DestinyRecordDefinition'][int(item)]['parentNodeHashes'])) > 0:
             parentNodeHash = all_data['DestinyRecordDefinition'][int(item)]['parentNodeHashes'][0]
             if parentNodeHash in parentNodes:
                 record = all_data['DestinyRecordDefinition'][int(item)]
 
+                #progress = progressResult.json()['Response']['characterRecords']['data'][firstChar]['records'][item]['objectives'][0]['progress']
+                #completionValue = progressResult.json()['Response']['characterRecords']['data'][firstChar]['records'][item]['objectives'][0]['completionValue']
+
+                #print(str(progress) + " / " + str(completionValue))
+
                 # make a list of the objectives for each record
+
+                if len(list(record['objectiveHashes'])) > 0:
+                    objectives = []
+                    for apiObj in progressResult.json()['Response']['characterRecords']['data'][firstChar]['records'][item]['objectives']:
+                        databaseObj = all_data['DestinyObjectiveDefinition'][apiObj['objectiveHash']]
+
+                        objectives.append(Objective(databaseObj['displayProperties']['name'],
+                                                    databaseObj['displayProperties']['description'],
+                                                    databaseObj['progressDescription'],
+                                                    apiObj['progress'],
+                                                    apiObj['completionValue'],
+                                                    apiObj['complete'],
+                                                    apiObj['objectiveHash']))
 
                 triumphs[loop_count] = Triumph(record['index'],
                                                record['displayProperties']['name'],
                                                record['displayProperties']['description'],
+                                               objectives,
                                                "http://www.bungie.net" + record['displayProperties']['icon'])
+
                 loop_count += 1
 
     return triumphs
 
 
 class Triumph():
-    def __init__(self, index, challengeName, challengeDescription, icon):
+    def __init__(self, index, challengeName, challengeDescription, objectives, icon):
         self.index = index
         self.challengeName = challengeName
         self.challengeDescription = challengeDescription
+        self.objectives = objectives
         self.icon = icon
+
+    def getComplete(self):
+        complete = True
+
+        for objective in self.objectives:
+            if objective.complete == False:
+                complete = False
+
+        return complete
+
+
+class Objective():
+    def __init__(self, objName, objDescription, progressDescription, progressValue, completionValue, complete, objHash):
+        self.objName = objName
+        self.objDescription = objDescription
+        self.progressDescription = progressDescription
+        self.progressValue = progressValue
+        self.completionValue = completionValue
+        self.complete = complete
+        self.objHash = objHash
+
+    def getProgressValue(self):
+        return self.completionValue if self.progressValue >= self.completionValue else self.progressValue
+
+    def getCompletion(self):
+        return (self.progressValue / self.completionValue) * 100
+
+    def getCompletionString(self):
+        return str(int(self.getCompletion()))

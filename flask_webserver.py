@@ -69,7 +69,7 @@ def seasonal():
 
     # with open("RecordsOutput.json", "w") as text_file:
     #    text_file.write(str(progress.json()['Response']).replace("'", "\"").replace("True", "true").replace("False", "false"))
-
+    # cum()
     return render_template('seasonal.html',
                            triumphs=triumphs,
                            characters=characters
