@@ -15,7 +15,7 @@ from Progression_Management import *
 
 # Initialize the app
 app = Flask(__name__)
-app.secret_key = 'g0ohkpNPJm5xYFV9AlsBk--yeM18EccWjLD935ZTC-c'
+app.secret_key = '-yeM18EccWjLD935ZTC-cg0ohkpNPJm5xYFV9AlsBk-'
 bootstrap = Bootstrap(app)
 
 oauth_session = requests.Session()
@@ -26,7 +26,6 @@ CLIENT_SECRET = 'g0ohkpNPJm5xYFV9AlsBk--yeM18EccWjLD935ZTC-c'
 HEADERS = {'X-API-Key': API_KEY}
 
 REDIRECT_URI = 'https://localhost:5000/callback/bungie'
-
 AUTH_URL = 'https://www.bungie.net/en/OAuth/Authorize?client_id='+CLIENT_ID+'&response_type=code&'
 access_token_url = 'https://www.bungie.net/Platform/App/OAuth/token/'
 refresh_token_url = access_token_url
@@ -36,14 +35,6 @@ print("Opening Manifest...")
 with open('data/manifest.pickle', 'rb') as data:
     all_data = pickle.load(data)
 print("Finished!")
-
-
-def setAccountSession():
-    userSummary = GetCurrentBungieAccount(oauth_session)
-    session['destinyMembershipId'] = str(userSummary.json()['Response']['destinyMemberships'][0]['membershipId'])
-    session['membershipType'] = str(userSummary.json()['Response']['destinyMemberships'][0]['membershipType'])
-    session['displayName'] = str(userSummary.json()['Response']['destinyMemberships'][0]['displayName'])
-    return
 
 
 @app.route('/')
@@ -94,15 +85,6 @@ def vault():
                            )
 
 
-def make_authorization_url():
-    # Generate a random string for the state parameter
-    # Save it for use later to prevent xsrf attacks
-    from uuid import uuid4
-    state = str(uuid4())
-    save_created_state(state)
-    return state
-
-
 @app.route('/callback/bungie')
 def bungie_callback():
     error = request.args.get('error', '')
@@ -119,6 +101,27 @@ def bungie_callback():
     token = get_token(code)
     return redirect(url_for('index'))
 
+# --------------------------------------------------
+# Routing above, Functions below
+# --------------------------------------------------
+
+
+def setAccountSession():
+    userSummary = GetCurrentBungieAccount(oauth_session)
+    session['destinyMembershipId'] = str(userSummary.json()['Response']['destinyMemberships'][0]['membershipId'])
+    session['membershipType'] = str(userSummary.json()['Response']['destinyMemberships'][0]['membershipType'])
+    session['displayName'] = str(userSummary.json()['Response']['destinyMemberships'][0]['displayName'])
+    return
+
+
+def make_authorization_url():
+    # Generate a random string for the state parameter
+    # Save it for use later to prevent xsrf attacks
+    from uuid import uuid4
+    state = str(uuid4())
+    save_created_state(state)
+    return state
+
 
 def get_token(code):
     AUTH_HEADERS = {'X-API-Key': API_KEY}
@@ -132,9 +135,8 @@ def get_token(code):
     save_session(token_json)
     return token_json
 
+
 # Update Session:
-
-
 def save_session(token_json):
     print("Updating session")
     oauth_session.headers["X-API-Key"] = API_KEY
@@ -144,7 +146,8 @@ def save_session(token_json):
 
 # Save state parameter used in CSRF protection:
 def save_created_state(state):
-    session['state_token'] = state
+    print(state)
+    session['state_token'] = str(state)
     pass
 
 
