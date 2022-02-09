@@ -1,7 +1,7 @@
 # 1. GuardianTools
 
 As someone who has played Destiny since release through Destiny 2 now, I often use web based tools outside of the game to simplify inventory management and managing tasks. For a time now I have wanted to make a custom tool to bring together multiple tools I like to use into one application.
-s
+
 ## 1.1 Table of Contents 
 
 - [1. GuardianTools](#1-guardiantools)
@@ -20,7 +20,7 @@ s
 
 ## 1.2 Goals
 
-I want to make one tool that brings together ---Inventory Management---, ---Triumph Tracking---, ---Seasonal Challenges---, ---Powerful / Pinnacle Gear Tracking---, and more...
+I want to make one tool that brings together ___Inventory Management___, ___Triumph Tracking___, ___Seasonal Challenges___, ___Powerful / Pinnacle Gear Tracking___, and more...
 
 # 2. Installation
 
