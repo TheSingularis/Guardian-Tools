@@ -43,7 +43,6 @@ def index():
     state = make_authorization_url()
     state_params = {'state': state}
     url = AUTH_URL + urllib.parse.urlencode(state_params)
-    # print(url)
     return render_template('index.html', url=url)
 
 
@@ -99,7 +98,14 @@ def bungie_callback():
     code = request.args.get('code')
     authorisation_code = code
     token = get_token(code)
+    session['token'] = token
     return redirect(url_for('index'))
+
+
+@app.before_request
+def check_login():
+    print('check login before going to the thing')
+    print(session['token'])
 
 # --------------------------------------------------
 # Routing above, Functions below
@@ -146,7 +152,6 @@ def save_session(token_json):
 
 # Save state parameter used in CSRF protection:
 def save_created_state(state):
-    print(state)
     session['state_token'] = str(state)
     pass
 

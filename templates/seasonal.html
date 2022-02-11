@@ -4,11 +4,50 @@
     {% include 'charactersBlock.html' %}
 
     <div class="seasonal-container">
-        <div class="container mt-5 mb-3">
-            <div class="row">
-                {% for triumph in triumphs %}
-                {% include 'triumphCard.html' %}
-                {% endfor %}
+        <div class="accordion" id="triumphAccordion">
+            <div class="card">
+                <div class="card-header" id="headingInProgress">
+                    <h3 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseInProgress" aria-expanded="true" aria-controls="collapseInProgress">
+                            In Progress
+                        </button>
+                    </h3>
+                </div>
+                <div id="collapseInProgress" class="collapse show" aria-labelledby="headingInProgress" data-parent="#triumphAccordion">
+                    <div class="card-body">
+                        <div class="container container-fluid mt-5 mb-3">
+                            <div class="row">
+                                {% for triumph in triumphs %}
+                                {% if not triumph.getComplete() %}
+                                {% include 'triumphCard.html' %}
+                                {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingCompleted">
+                    <h3 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseCompleted" aria-expanded="false" aria-controls="collapseCompleted">
+                            Completed
+                        </button>
+                    </h3>
+                </div>
+                <div id="collapseCompleted" class="collapse" aria-labelledby="headingCompleted" data-parent="#triumphAccordion">
+                    <div class="card-body">
+                        <div class="container mt-5 mb-3">
+                            <div class="row">
+                                {% for triumph in triumphs %}
+                                {% if triumph.getComplete() %}
+                                {% include 'triumphCard.html' %}
+                                {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

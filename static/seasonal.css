@@ -1,0 +1,11 @@
+.seasonal-container {
+    padding: 2.5rem;
+}
+
+.accordion {
+    border: 1px solid rgba(0,0,0,.125);
+}
+
+.accordion .card:not(:first-child) .card-header {
+    border-top: 1px solid rgba(0,0,0,.125);
+}
