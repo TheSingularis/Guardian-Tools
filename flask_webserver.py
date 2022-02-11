@@ -40,11 +40,8 @@ print("Finished!")
 @app.route('/')
 @app.route('/index')
 def index():
-    #    state = make_authorization_url()
-    #    state_params = {'state': state}
-    #    url = AUTH_URL + urllib.parse.urlencode(state_params)
+    # TODO: Design a dashboard page that shows basic character information
     return render_template('index.html')
-    pass
 
 
 @app.route('/seasonal')
@@ -100,7 +97,7 @@ def bungie_callback():
     authorisation_code = code
     token = get_token(code)
     session['token'] = token
-    return redirect(url_for('index'))
+    return redirect(url_for(session['path'][1:]))
 
 
 @app.before_request
@@ -109,9 +106,8 @@ def check_login():
     #    out = "Authorized" if "Authorization" in oauth_session.get('https://httpbin.org/headers').text else "No Auth Found"
     #    print(out)
 
-    print(request.path)
-
     if not request.path == '/callback/bungie':
+        session['path'] = request.path
         if "Authorization" in oauth_session.get('https://httpbin.org/headers').text:
             # logged in, do nothing
             pass
