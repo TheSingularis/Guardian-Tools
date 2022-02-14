@@ -14,8 +14,11 @@ body {
 }
 
 .icon {
-    width: 75px;
-    height: 75px;
+    max-width: 75px;
+    max-height: 75px;
+    min-width: 75px;
+    min-height: 75px;
+    
     background-color: #eee;
     border-radius: 30px;
     display: flex;
@@ -36,15 +39,6 @@ body {
     align-items: center;
 }
 
-.progress {
-    height: 10px;
-    border-radius: 10px;
-}
-
-.progress div {
-    background-color: steelblue;
-}
-
 .text1 {
     font-size: 14px;
     font-weight: 600;
@@ -52,4 +46,14 @@ body {
 
 .text2 {
     color: #a5aec0;
+}
+
+
+.progress {
+    height: 30px;
+}
+
+/*
+.progress div {
+    background-color: steelblue;
 }

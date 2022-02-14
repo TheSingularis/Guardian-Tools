@@ -1,4 +1,4 @@
-<div class="col-sm-6 col-lg-3">
+<div class="col-sm-6 col-xl-3">
     <div class="card p-3 mb-2 bg-light">
         <div class="d-flex justify-content-between">
             <div class="d-flex flex-row align-items-center">
@@ -9,34 +9,33 @@
                     <h6 class="mb-0 ml-1">{{ triumph.challengeName }}</h6>
                 </div>
             </div>
+            <!--
             {% if triumph.getComplete() %}
             <div class="badge">
                 <span>Done</span>
             </div>
             {% endif %}
+            -->
         </div>
-        <div class="mt-5">
+        <div class="mt-4">
+
             <h6 class="heading">{{ triumph.challengeDescription }}</h6>
-            <div class="mt-5">
+            <div class="mt-4">
 
                 {% for objective in triumph.objectives %}
 
-                <div class="mt-3">
-                    {{ objective.getProgressValue() }} of {{ objective.completionValue }} {{ objective.progressDescription }}
+                <div class="progress bg-dark mt-1">
+                    <div class="progress-bar" role="progressbar" style="width: {{objective.getCompletionString()}}%;" aria-valuenow=" {{ objective.getProgressValue() }}" aria-valuemin="0" aria-valuemax="{{ objective.completionValue }}">
+                        &nbsp;
+                        {{ objective.getProgressValue() }} of {{ objective.completionValue }} {{ objective.progressDescription }}
+                        &nbsp;
+                    </div>
                 </div>
 
-                <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: {{objective.getCompletionString()}}%;" aria-valuenow=" {{ objective.getProgressValue() }}" aria-valuemin="0" aria-valuemax="{{ objective.completionValue }}"></div>
-                </div>
 
                 {% endfor %}
 
                 <!-- The above shows an error because of some python sillyness going on, ignore it -->
-
-                <!--
-                <div class="mt-3"> <span class="text1">52 Applied <span class="text2">of 100 capacity</span></span> </div>
-                -->
-
             </div>
         </div>
     </div>

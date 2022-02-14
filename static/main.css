@@ -8,8 +8,14 @@
   src: url(font/NHaasGroteskTXPro-75Bd.ttf);
 }
 
+@font-face {
+    font-family: DestinyIcons;
+    src: url(font/Destiny_Keys.otf)
+}
+
 body {
-  font-family: NeueHaasGroteskReg;
+  font-family: NeueHaasGroteskReg, DestinyIcons, Arial, Helvetica, sans-serif;
+  color: #333332;
 }
 
 img {

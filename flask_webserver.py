@@ -44,6 +44,11 @@ def index():
     return render_template('index.html')
 
 
+@app.route('/dashboard')
+def dashboard():
+    return('index.html')
+
+
 @app.route('/seasonal')
 def seasonal():
     setAccountSession()
@@ -106,7 +111,7 @@ def check_login():
     #    out = "Authorized" if "Authorization" in oauth_session.get('https://httpbin.org/headers').text else "No Auth Found"
     #    print(out)
 
-    if not request.path == '/callback/bungie':
+    if not request.path == '/callback/bungie' and not request.path == '/':
         session['path'] = request.path
         if "Authorization" in oauth_session.get('https://httpbin.org/headers').text:
             # logged in, do nothing
