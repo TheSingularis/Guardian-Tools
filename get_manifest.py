@@ -78,10 +78,20 @@ def build_dict(hash_dict):
 
 # check if pickle exists, if not create one.
 if os.path.isfile('data/manifest.pickle') == False:
+    print('Pickle Not Found')
+    print('Downloading Database')
+
     get_manifest()
     all_data = build_dict(hash_dict)
     with open('data/manifest.pickle', 'wb') as data:
         pickle.dump(all_data, data)
     print("'data/manifest.pickle' created!\nDONE!")
 else:
-    print('Pickle Exists')
+    print('Pickle Already Exists')
+    print('Replacing Database')
+
+    get_manifest()
+    all_data = build_dict(hash_dict)
+    with open('data/manifest.pickle', 'wb') as data:
+        pickle.dump(all_data, data)
+    print("'data/manifest.pickle' created!\nDONE!")
