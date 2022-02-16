@@ -28,10 +28,10 @@ As someone who has played Destiny since release through Destiny 2 now, I often u
 
 ## 3.1 Easy
 
-- [ ] Directory Management
-  - [ ] CSS and JS
+- [x] Directory Management
+  - [x] CSS and JS
 - [ ] Text replacement
-  - [ ] Optimize the process by running the whole thing once instead of the entire page once for each of the symbols
+  - [x] Optimize the process by running the whole thing once instead of the entire page once for each of the symbols
   - [ ] Get a new font file from the game files
     - [ ] Trace Rifles
 

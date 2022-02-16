@@ -1,16 +1,16 @@
 @font-face {
   font-family: NeueHaasGroteskReg;
-  src: url(font/NHaasGroteskTXPro-55Rg.ttf);
+  src: url(../font/NHaasGroteskTXPro-55Rg.ttf);
 }
 
 @font-face {
   font-family: NeueHaasGroteskBold;
-  src: url(font/NHaasGroteskTXPro-75Bd.ttf);
+  src: url(../font/NHaasGroteskTXPro-75Bd.ttf);
 }
 
 @font-face {
     font-family: DestinyIcons;
-    src: url(font/Destiny_Keys.otf)
+    src: url(../font/Destiny_Keys.otf)
 }
 
 body {
