@@ -38,6 +38,12 @@ def getProgress(session, membershipType, destinyMembershipId):
 
 
 def parseProgress(session, progressResult, all_data, firstChar):
+    """
+    search the DestinyPresentationNodeDefinition for 'Seasonal Challenges'
+
+
+    """
+
     parentNodes = {4143126230,  # Week 1
                    4143126229,  # Week 2
                    4143126228,  # Week 3

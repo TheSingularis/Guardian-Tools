@@ -24,5 +24,7 @@ function replaceDestinySymbols() {
         //Power
         .replaceAll('[Sword]', "")
         .replaceAll('[Linear Fusion Rifle]', "")
-        .replaceAll('[Rocket Launcher]', "");
+        .replaceAll('[Rocket Launcher]', "")
+        //Unique
+        .replaceAll('[Trace Rifle]', "");
 }

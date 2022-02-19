@@ -1,0 +1,19 @@
+{
+    "displayProperties": {
+        "description": "Unlock an ability on one of your subclasses.",
+        "name": "Upgrade Point",
+        "hasIcon": false
+    },
+    "scope": 0,
+    "category": 2,
+    "bucketOrder": 50,
+    "itemCount": 1,
+    "location": 1,
+    "hasTransferDestination": false,
+    "enabled": true,
+    "fifo": false,
+    "hash": 2689798304,
+    "index": 24,
+    "redacted": false,
+    "blacklisted": false
+}

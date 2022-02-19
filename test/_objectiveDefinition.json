@@ -1,0 +1,134 @@
+[
+    {
+        "displayProperties": {
+            "description": "",
+            "name": "",
+            "hasIcon": false
+        },
+        "unlockValueHash": 0,
+        "completionValue": 200,
+        "scope": 3,
+        "locationHash": 0,
+        "allowNegativeValue": false,
+        "allowValueChangeWhenCompleted": false,
+        "isCountingDownward": false,
+        "valueStyle": 0,
+        "progressDescription": "Calibration",
+        "perks": {
+            "perkHash": 0,
+            "style": 0
+        },
+        "stats": {
+            "style": 0
+        },
+        "minimumVisibilityThreshold": -2147483648,
+        "allowOvercompletion": false,
+        "showValueOnComplete": false,
+        "isDisplayOnlyObjective": false,
+        "completedValueStyle": 0,
+        "inProgressValueStyle": 3,
+        "hash": 4151889547,
+        "index": 1252,
+        "redacted": false,
+        "blacklisted": false
+    },
+    {
+        "displayProperties": {
+            "description": "[Solar] [Melee] Final blows",
+            "name": "",
+            "hasIcon": false
+        },
+        "unlockValueHash": 0,
+        "completionValue": 100,
+        "scope": 5,
+        "locationHash": 0,
+        "allowNegativeValue": false,
+        "allowValueChangeWhenCompleted": false,
+        "isCountingDownward": false,
+        "valueStyle": 0,
+        "progressDescription": "[Solar] [Melee] Final blows",
+        "perks": {
+            "perkHash": 0,
+            "style": 0
+        },
+        "stats": {
+            "style": 0
+        },
+        "minimumVisibilityThreshold": -2147483648,
+        "allowOvercompletion": false,
+        "showValueOnComplete": false,
+        "isDisplayOnlyObjective": false,
+        "completedValueStyle": 0,
+        "inProgressValueStyle": 1,
+        "hash": 4153495906,
+        "index": 933,
+        "redacted": false,
+        "blacklisted": false
+    },
+    {
+        "displayProperties": {
+            "description": "",
+            "name": "",
+            "hasIcon": false
+        },
+        "unlockValueHash": 0,
+        "completionValue": 75,
+        "scope": 3,
+        "locationHash": 0,
+        "allowNegativeValue": false,
+        "allowValueChangeWhenCompleted": false,
+        "isCountingDownward": false,
+        "valueStyle": 0,
+        "progressDescription": "Guardians",
+        "perks": {
+            "perkHash": 0,
+            "style": 0
+        },
+        "stats": {
+            "style": 0
+        },
+        "minimumVisibilityThreshold": -2147483648,
+        "allowOvercompletion": false,
+        "showValueOnComplete": false,
+        "isDisplayOnlyObjective": false,
+        "completedValueStyle": 0,
+        "inProgressValueStyle": 1,
+        "hash": 888201682,
+        "index": 1224,
+        "redacted": false,
+        "blacklisted": false
+    },
+    {
+        "displayProperties": {
+            "description": "Master Nightfall",
+            "name": "",
+            "hasIcon": false
+        },
+        "unlockValueHash": 0,
+        "completionValue": 1,
+        "scope": 3,
+        "locationHash": 0,
+        "allowNegativeValue": false,
+        "allowValueChangeWhenCompleted": false,
+        "isCountingDownward": false,
+        "valueStyle": 0,
+        "progressDescription": "Master Nightfall",
+        "perks": {
+            "perkHash": 0,
+            "style": 0
+        },
+        "stats": {
+            "style": 0
+        },
+        "minimumVisibilityThreshold": -2147483648,
+        "allowOvercompletion": false,
+        "showValueOnComplete": false,
+        "isDisplayOnlyObjective": false,
+        "completedValueStyle": 2,
+        "inProgressValueStyle": 2,
+        "hash": 2174523681,
+        "index": 937,
+        "redacted": false,
+        "blacklisted": false
+    }
+]

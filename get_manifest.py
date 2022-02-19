@@ -17,7 +17,8 @@ hash_dict = {
     'DestinyProgressionDefinition': 'hash',
     'DestinyRecordDefinition': 'hash',
     'DestinyPresentationNodeDefinition': 'hash',
-    'DestinyObjectiveDefinition': 'hash'
+    'DestinyObjectiveDefinition': 'hash',
+    'DestinyPresentationNodeDefinition': 'hash'
 }
 
 
