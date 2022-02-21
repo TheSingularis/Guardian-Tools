@@ -1,69 +1,212 @@
-{
-    "displayProperties": {
-        "description": "Complete limited-time challenges for Season rank, Bright Dust, and other rewards.",
-        "name": "Seasonal Challenges",
-        "icon": "/common/destiny2_content/icons/DestinyPresentationNodeDefinition_265abf1e776ea726de1f1459392727b6.png",
-        "iconSequences": [
-            {
-                "frames": [
-                    "/common/destiny2_content/icons/98ab820785900cef91a4d0927935a8aa.png"
-                ]
-            },
-            {
-                "frames": [
-                    "/common/destiny2_content/icons/d1115a04234905f8eb4214656db7861d.jpg"
-                ]
-            },
-            {
-                "frames": [
-                    "/common/destiny2_content/icons/da6578be07665e533f13be79432eb334.jpg"
-                ]
-            },
-            {
-                "frames": [
-                    "/common/destiny2_content/icons/ae372d08d751766c6b8a449fbe60df5b.png"
-                ]
-            },
-            {
-                "frames": [
-                    "/common/destiny2_content/icons/5af2a9b4c9cd0eea4d8ce617a3eeae75.png"
-                ]
-            }
+[
+    {
+        "displayProperties": {
+            "description": "Complete limited-time challenges for Season rank, Bright Dust, and other rewards.",
+            "name": "Seasonal Challenges",
+            "icon": "/common/destiny2_content/icons/DestinyPresentationNodeDefinition_265abf1e776ea726de1f1459392727b6.png",
+            "iconSequences": [
+                {
+                    "frames": [
+                        "/common/destiny2_content/icons/98ab820785900cef91a4d0927935a8aa.png"
+                    ]
+                },
+                {
+                    "frames": [
+                        "/common/destiny2_content/icons/d1115a04234905f8eb4214656db7861d.jpg"
+                    ]
+                },
+                {
+                    "frames": [
+                        "/common/destiny2_content/icons/da6578be07665e533f13be79432eb334.jpg"
+                    ]
+                },
+                {
+                    "frames": [
+                        "/common/destiny2_content/icons/ae372d08d751766c6b8a449fbe60df5b.png"
+                    ]
+                },
+                {
+                    "frames": [
+                        "/common/destiny2_content/icons/5af2a9b4c9cd0eea4d8ce617a3eeae75.png"
+                    ]
+                }
+            ],
+            "hasIcon": true
+        },
+        "originalIcon": "/common/destiny2_content/icons/98ab820785900cef91a4d0927935a8aa.png",
+        "rootViewIcon": "/img/destiny_content/seasons/icons/season15.png",
+        "nodeType": 1,
+        "scope": 1,
+        "objectiveHash": 1964364237,
+        "children": {
+            "presentationNodes": [
+                {
+                    "presentationNodeHash": 102658401
+                },
+                {
+                    "presentationNodeHash": 3759694843
+                }
+            ],
+            "collectibles": [],
+            "records": [],
+            "metrics": []
+        },
+        "displayStyle": 0,
+        "screenStyle": 0,
+        "requirements": {
+            "entitlementUnavailableMessage": ""
+        },
+        "disableChildSubscreenNavigation": false,
+        "categoryScoreUnlockValueHash": 0,
+        "maxCategoryRecordScore": 0,
+        "presentationNodeType": 1,
+        "traitIds": [],
+        "traitHashes": [],
+        "parentNodeHashes": [],
+        "hash": 3443694067,
+        "index": 1131,
+        "redacted": false,
+        "blacklisted": false
+    },
+    {
+        "displayProperties": {
+            "description": "",
+            "name": "Weekly",
+            "icon": "/common/destiny2_content/icons/91e741cc3ac2fd4ab1ded5f8355271f6.png",
+            "hasIcon": true
+        },
+        "originalIcon": "/common/destiny2_content/icons/91e741cc3ac2fd4ab1ded5f8355271f6.png",
+        "rootViewIcon": "/common/destiny2_content/icons/91e741cc3ac2fd4ab1ded5f8355271f6.png",
+        "nodeType": 1,
+        "scope": 1,
+        "objectiveHash": 4242565139,
+        "children": {
+            "presentationNodes": [
+                {
+                    "presentationNodeHash": 3608142460
+                },
+                {
+                    "presentationNodeHash": 4143126230
+                },
+                {
+                    "presentationNodeHash": 4143126229
+                },
+                {
+                    "presentationNodeHash": 4143126228
+                },
+                {
+                    "presentationNodeHash": 4143126227
+                },
+                {
+                    "presentationNodeHash": 4143126226
+                },
+                {
+                    "presentationNodeHash": 4143126225
+                },
+                {
+                    "presentationNodeHash": 4143126224
+                },
+                {
+                    "presentationNodeHash": 4143126239
+                },
+                {
+                    "presentationNodeHash": 4143126238
+                },
+                {
+                    "presentationNodeHash": 2527916754
+                }
+            ],
+            "collectibles": [],
+            "records": [],
+            "metrics": []
+        },
+        "displayStyle": 0,
+        "screenStyle": 0,
+        "requirements": {
+            "entitlementUnavailableMessage": ""
+        },
+        "disableChildSubscreenNavigation": false,
+        "categoryScoreUnlockValueHash": 0,
+        "maxCategoryRecordScore": 0,
+        "presentationNodeType": 1,
+        "traitIds": [],
+        "traitHashes": [],
+        "parentNodeHashes": [
+            3443694067
         ],
-        "hasIcon": true
+        "hash": 102658401,
+        "index": 1135,
+        "redacted": false,
+        "blacklisted": false
     },
-    "originalIcon": "/common/destiny2_content/icons/98ab820785900cef91a4d0927935a8aa.png",
-    "rootViewIcon": "/img/destiny_content/seasons/icons/season15.png",
-    "nodeType": 1,
-    "scope": 1,
-    "objectiveHash": 1964364237,
-    "children": {
-        "presentationNodes": [
-            {
-                "presentationNodeHash": 102658401
-            },
-            {
-                "presentationNodeHash": 3759694843
-            }
+    {
+        "displayProperties": {
+            "description": "",
+            "name": "Past Challenges",
+            "icon": "/common/destiny2_content/icons/98ab820785900cef91a4d0927935a8aa.png",
+            "iconSequences": [
+                {
+                    "frames": [
+                        "/common/destiny2_content/icons/98ab820785900cef91a4d0927935a8aa.png"
+                    ]
+                },
+                {
+                    "frames": [
+                        "/common/destiny2_content/icons/d1115a04234905f8eb4214656db7861d.jpg"
+                    ]
+                },
+                {
+                    "frames": [
+                        "/common/destiny2_content/icons/da6578be07665e533f13be79432eb334.jpg"
+                    ]
+                },
+                {
+                    "frames": [
+                        "/common/destiny2_content/icons/ae372d08d751766c6b8a449fbe60df5b.png"
+                    ]
+                },
+                {
+                    "frames": [
+                        "/common/destiny2_content/icons/5af2a9b4c9cd0eea4d8ce617a3eeae75.png"
+                    ]
+                }
+            ],
+            "hasIcon": true
+        },
+        "originalIcon": "/common/destiny2_content/icons/98ab820785900cef91a4d0927935a8aa.png",
+        "rootViewIcon": "/common/destiny2_content/icons/98ab820785900cef91a4d0927935a8aa.png",
+        "nodeType": 1,
+        "scope": 0,
+        "children": {
+            "presentationNodes": [
+                {
+                    "presentationNodeHash": 2119135353
+                },
+                {
+                    "presentationNodeHash": 2119135358
+                }
+            ],
+            "collectibles": [],
+            "records": [],
+            "metrics": []
+        },
+        "displayStyle": 0,
+        "screenStyle": 0,
+        "requirements": {
+            "entitlementUnavailableMessage": ""
+        },
+        "disableChildSubscreenNavigation": false,
+        "categoryScoreUnlockValueHash": 0,
+        "maxCategoryRecordScore": 0,
+        "presentationNodeType": 1,
+        "traitIds": [],
+        "traitHashes": [],
+        "parentNodeHashes": [
+            3443694067
         ],
-        "collectibles": [],
-        "records": [],
-        "metrics": []
-    },
-    "displayStyle": 0,
-    "screenStyle": 0,
-    "requirements": {
-        "entitlementUnavailableMessage": ""
-    },
-    "disableChildSubscreenNavigation": false,
-    "categoryScoreUnlockValueHash": 0,
-    "maxCategoryRecordScore": 0,
-    "presentationNodeType": 1,
-    "traitIds": [],
-    "traitHashes": [],
-    "parentNodeHashes": [],
-    "hash": 3443694067,
-    "index": 1131,
-    "redacted": false,
-    "blacklisted": false
-}
+        "hash": 3759694843,
+        "index": 1132,
+        "redacted": false,
+        "blacklisted": false
+    }
+]

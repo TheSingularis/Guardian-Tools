@@ -40,9 +40,25 @@ def getProgress(session, membershipType, destinyMembershipId):
 def parseProgress(session, progressResult, all_data, firstChar):
     """
     search the DestinyPresentationNodeDefinition for 'Seasonal Challenges'
-
+        this gets us 'Weekly' and 'Past'
+        'Weekly':
+            Children for each week + one parent for the completionist capstone:
+                Week:
+                    Challenges to list
+        'Past Challenges':
+            Children for each prior season:
+                Challenges to list
 
     """
+
+    for item in all_data['DestinyRecordDefinition']:
+
+        # print(all_data['DestinyRecordDefinition'][int(item)]['displayProperties']['name'])
+
+        if "Seasonal" in all_data['DestinyRecordDefinition'][int(item)]['displayProperties']['name']:
+            print(f"seasonal challenges hash: {str(item)}")
+
+    """"""
 
     parentNodes = {4143126230,  # Week 1
                    4143126229,  # Week 2
@@ -88,6 +104,8 @@ def parseProgress(session, progressResult, all_data, firstChar):
                 loop_count += 1
 
     return triumphs
+
+    """"""
 
 
 class Triumph():

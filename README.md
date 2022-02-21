@@ -28,17 +28,13 @@ As someone who has played Destiny since release through Destiny 2 now, I often u
 
 ## 3.1 Easy
 
-- [x] Directory Management
-  - [x] CSS and JS
-- [ ] Text replacement
-  - [x] Optimize the process by running the whole thing once instead of the entire page once for each of the symbols
-  - [ ] Get a new font file from the game files
-    - [ ] Trace Rifles
+- [ ] Dynamically find seasonal challenges
 
   ## 3.2 Medium
 
 - [ ] Design a dashboard page
   - [ ] Figure out what basics to display, probably weekly progress and vendor ranks and character light and other stats
+- [ ] Categorize Seasonal Challenges by activity
 - [ ] Type up info for installing a dev build yourself
 
 ## 3.3 Hard
