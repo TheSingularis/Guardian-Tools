@@ -51,14 +51,19 @@ def parseProgress(session, progressResult, all_data, firstChar):
 
     """
 
-    for item in all_data['DestinyRecordDefinition']:
+    for record in all_data['DestinyPresentationNodeDefinition']:    # Loop all records
+        if "Seasonal Challenges" in all_data['DestinyPresentationNodeDefinition'][int(record)]['displayProperties']['name']:   # Find the Seasonal Challenges record
+            print(f"seasonal challenges hash: {str(record)}")
+            # This returns the hashes for weekly and past challenges (prior to Witch Queen)
+            childHashes = list(all_data['DestinyPresentationNodeDefinition'][int(record)]['children']['presentationNodes'])
 
-        # print(all_data['DestinyRecordDefinition'][int(item)]['displayProperties']['name'])
+            weeklyHash = childHashes[0]
+            pastChallengesHash = childHashes[1]
 
-        if "Seasonal" in all_data['DestinyRecordDefinition'][int(item)]['displayProperties']['name']:
-            print(f"seasonal challenges hash: {str(item)}")
+            # TODO: Finish This, the above hashes need to be searched in the ['DestinyPresentationNodeDefinition'] table and then use their children to get the list of 'parentNodes' like below
 
-    """"""
+            # for presentationNode in all_data['DestinyPresentationNodeDefinition'][int(record)]['children']['presentationNodes']:
+            # print(f"presentaion node hash: {str(presentationNode)}")
 
     parentNodes = {4143126230,  # Week 1
                    4143126229,  # Week 2
@@ -104,8 +109,6 @@ def parseProgress(session, progressResult, all_data, firstChar):
                 loop_count += 1
 
     return triumphs
-
-    """"""
 
 
 class Triumph():
