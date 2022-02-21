@@ -9,6 +9,8 @@
   - [3.2 Medium](#32-medium)
   - [3.3 Hard](#33-hard)
 - [4. Issues](#4-issues)
+- [5. Notes](#5-notes)
+  - [5.1 Naming Conventions](#51-naming-conventions)
 
 # 1. GuardianTools
 
@@ -48,3 +50,15 @@ As someone who has played Destiny since release through Destiny 2 now, I often u
 # 4. Issues
 
 - [x] Nothing notable yet
+
+
+
+# 5. Notes
+
+## 5.1 Naming Conventions
+
+- Class titles use **CapCase**
+- Functions and Variables use the same conventions
+  - Functions use **camelCase**
+  - Variables use **camelCase**
+- Constants use **CAPS_WITH_UNDERSCORES**
