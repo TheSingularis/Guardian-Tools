@@ -25,10 +25,12 @@ CLIENT_ID = '39035'
 CLIENT_SECRET = 'g0ohkpNPJm5xYFV9AlsBk--yeM18EccWjLD935ZTC-c'
 HEADERS = {'X-API-Key': API_KEY}
 
+base_url = 'https://bungie.net/Platform/Destiny2/'
 REDIRECT_URI = 'https://localhost:5000/callback/bungie'
 AUTH_URL = 'https://www.bungie.net/en/OAuth/Authorize?client_id='+CLIENT_ID+'&response_type=code&'
 access_token_url = 'https://www.bungie.net/Platform/App/OAuth/token/'
 refresh_token_url = access_token_url
+
 
 # Open Manifest:
 print("Opening Manifest...")
@@ -46,7 +48,7 @@ def index():
 
 @app.route('/dashboard')
 def dashboard():
-    return('index.html')
+    return render_template('index.html')
 
 
 @app.route('/seasonal')
@@ -105,24 +107,48 @@ def bungie_callback():
     return redirect(url_for(session['path'][1:]))
 
 
+@app.route('/error/<cause>')
+def errorReport(cause):
+    text = None
+
+    if cause == "bungieServer":
+        text = "Bungie servers unavailable, check @BungieHelp for more information."
+        print(text)
+
+    return render_template('index.html', info=text, error=True)
+
+
 @app.before_request
 def check_login():
-    #    print('check login before going to the thing')
-    #    out = "Authorized" if "Authorization" in oauth_session.get('https://httpbin.org/headers').text else "No Auth Found"
-    #    print(out)
 
-    if not request.path == '/callback/bungie' and not request.path == '/':
-        session['path'] = request.path
-        if "Authorization" in oauth_session.get('https://httpbin.org/headers').text:
-            # logged in, do nothing
-            pass
-        else:
-            # run login routine then continue
-            state = make_authorization_url()
-            state_params = {'state': state}
-            url = AUTH_URL + urllib.parse.urlencode(state_params)
+    # Ignore local requests
+    if ('static' not in request.path) and ('error' not in request.path) and ('/' != request.path):
 
-            return redirect(url, code=302)
+        # Check bungie server status
+        cause = None
+
+        if "Endpoint not found." in oauth_session.get(base_url).text:
+            # Servers are down
+            cause = 'bungieServer'
+
+        print(f"Error Redirect: {cause}")
+
+        if cause != None:
+            return redirect(url_for('errorReport', cause=cause), code=302)
+
+        # Redirect to bungie auth if not logged in
+        if (not request.path == '/callback/bungie'):
+            session['path'] = request.path
+            if "Authorization" in oauth_session.get('https://httpbin.org/headers').text:
+                # logged in, do nothing
+                pass
+            else:
+                # run login routine then continue
+                state = make_authorization_url()
+                state_params = {'state': state}
+                url = AUTH_URL + urllib.parse.urlencode(state_params)
+
+                return redirect(url, code=302)
 
 
 # --------------------------------------------------

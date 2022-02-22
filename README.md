@@ -49,7 +49,7 @@ As someone who has played Destiny since release through Destiny 2 now, I often u
 
 # 4. Issues
 
-- [x] Nothing notable yet
+- [ ] No handling for the case that Destiny servers are down
 
 
 
