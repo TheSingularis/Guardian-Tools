@@ -52,18 +52,30 @@ def dashboard():
 
 
 @app.route('/seasonal')
-def seasonal():
+@app.route('/seasonal/<seasonSlug>')
+def seasonal(seasonSlug="risen"):
     setAccountSession()
 
     accountSummary = GetAccountInfo(oauth_session, session.get('membershipType'), session.get('destinyMembershipId'))
 
     progress = getProgress(oauth_session, session.get('membershipType'), session.get('destinyMembershipId'))
-    triumphs = parseProgress(oauth_session, progress, all_data, GetCharId(oauth_session, session, 0))
+    seasons = parseProgress(oauth_session, progress, all_data, GetCharId(oauth_session, session, 0))
 
     characters = GetCharacters(accountSummary, all_data)
 
+    thisSeason = None
+
+    for s in seasons:
+        if seasonSlug in s.title.lower():
+            thisSeason = s
+
+    # If no season is set, default to the first in the list
+    if thisSeason == None:
+        thisSeason = seasons[0]
+        print("Seasonal Error: No SLUG Entered")
+
     return render_template('seasonal.html',
-                           triumphs=triumphs,
+                           season=thisSeason,
                            characters=characters
                            )
 
@@ -126,14 +138,18 @@ def check_login():
 
         # Check bungie server status
         cause = None
+        error = False
 
-        if "Endpoint not found." in oauth_session.get(base_url).text:
-            # Servers are down
-            cause = 'bungieServer'
+        # TODO: find a way to check if the service is up or not, this aint it chief
+        # if "Endpoint not found." in oauth_session.get(base_url).text:
+        #    # Servers are down
+        #    cause = 'bungieServer'
+        #    error = True
 
         print(f"Error Redirect: {cause}")
 
-        if cause != None:
+        if error == True:
+            print("error")
             return redirect(url_for('errorReport', cause=cause), code=302)
 
         # Redirect to bungie auth if not logged in
