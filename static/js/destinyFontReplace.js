@@ -21,10 +21,12 @@ function replaceDestinySymbols() {
         .replaceAll('[Fusion Rifle]', "")
         .replaceAll('[Grenade Launcher]', "")
         .replaceAll('[Shotgun]', "")
+        .replaceAll('[Glaive]', "")
         //Power
         .replaceAll('[Sword]', "")
         .replaceAll('[Linear Fusion Rifle]', "")
         .replaceAll('[Rocket Launcher]', "")
+        .replaceAll('[Machine Gun]', "")
         //Unique
         .replaceAll('[Trace Rifle]', "");
 }
