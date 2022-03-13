@@ -30,12 +30,13 @@ As someone who has played Destiny since release through Destiny 2 now, I often u
 
 ## 3.1 Easy
 
-- [ ] Dynamically find seasonal challenges
+- [x] Dynamically find seasonal challenges
 
   ## 3.2 Medium
 
 - [ ] Design a dashboard page
   - [ ] Figure out what basics to display, probably weekly progress and vendor ranks and character light and other stats
+- [ ] Sort Seasonal challenges by week
 - [ ] Categorize Seasonal Challenges by activity
 - [ ] Type up info for installing a dev build yourself
 
