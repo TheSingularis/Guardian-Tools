@@ -13,6 +13,7 @@ function replaceDestinySymbols() {
         .replaceAll('[Stasis]', "")
         //Abilities
         .replaceAll('[Melee]', "")
+        .replaceAll('[Headshot]', "")
         //Primary
         .replaceAll('[Hand Cannon]', "")
         .replaceAll('[Auto Rifle]', "")

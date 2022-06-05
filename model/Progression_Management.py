@@ -1,33 +1,9 @@
-from inspect import trace
 import requests
 import json
 
-from Account_Management import *
+from model.Account_Management import *
 
 base_url = "https://www.bungie.net/platform/Destiny2/"
-
-weekOneChallenges = 10
-weekTwoChallenges = 10
-weekThreeChallenges = 10
-weekFourChallenges = 9
-weekFiveChallenges = 7
-weekSixChallenges = 7
-weekSevenChallenges = 7
-weekEightChallenges = 6
-weekNineChallenges = 6
-weekTenChallenges = 5
-
-totalChallenges = (weekOneChallenges +
-                   weekTwoChallenges +
-                   weekThreeChallenges +
-                   weekFourChallenges +
-                   weekFiveChallenges +
-                   weekSixChallenges +
-                   weekSevenChallenges +
-                   weekEightChallenges +
-                   weekNineChallenges +
-                   weekTenChallenges +
-                   1)   # Add one for the "Complete all seasonal challenges triumph"
 
 
 def getProgress(session, membershipType, destinyMembershipId):
@@ -52,56 +28,23 @@ def parseProgress(session, progressResult, all_data, firstChar):
 
     """
 
+    parentNodes = []
+
     for record in all_data['DestinyPresentationNodeDefinition']:    # Loop all records
         if "Seasonal Challenges" in all_data['DestinyPresentationNodeDefinition'][int(record)]['displayProperties']['name']:   # Find the Seasonal Challenges record
-
-            #print(f"seasonal challenges hash: {str(record)}")
-
+            print(f"seasonal challenges hash: {str(record)}")
             # This returns the hashes for weekly and past challenges (prior to Witch Queen)
             childHashes = list(all_data['DestinyPresentationNodeDefinition'][int(record)]['children']['presentationNodes'])
 
-            if len(childHashes) > 0:
-                weeklyHash = childHashes[0]['presentationNodeHash']
-                #print(f"weekly hash: {weeklyHash}")
-
-            if len(childHashes) > 1:
-                pastChallengesHash = childHashes[1]
-                # TODO: Implement previous seasons, kinda hard rn (03/12/2022) cuz theres no previous seasons available
-
-            weekNodes = [None] * 0
-
-            for node in list(all_data['DestinyPresentationNodeDefinition'][int(weeklyHash)]['children']['presentationNodes']):
-                weekNodes.append(node['presentationNodeHash'])
-
-            triumphList = getChallengesFromParentNodes(progressResult, all_data, firstChar, weekNodes)
-
-            seasonTitle = ""
-            for t in triumphList:
-                if "Season of" in t.challengeDescription:
-                    words = t.challengeDescription.split()
-
-                    while (words[0] != "Season") & (len(words) > 0):
-                        words.pop(0)
-
-                    if words[2] == "the":
-                        seasonTitle = " ".join(words[0:4])
-                    else:
-                        seasonTitle = " ".join(words[0:3])
-
-            seasons = [None] * 0
-            seasons.append(Season(seasonTitle, triumphList))
+            weeklyHash = childHashes[0]['presentationNodeHash']
+            pastChallengesHash = childHashes[1]
 
             # TODO: Finish This, the above hashes need to be searched in the ['DestinyPresentationNodeDefinition'] table and then use their children to get the list of 'parentNodes' like below
 
-            # for presentationNode in all_data['DestinyPresentationNodeDefinition'][int(record)]['children']['presentationNodes']:
-            # print(f"presentaion node hash: {str(presentationNode)}")
+            for presentationNode in all_data['DestinyPresentationNodeDefinition'][weeklyHash]['children']['presentationNodes']:
+                parentNodes.append(presentationNode['presentationNodeHash'])
 
-    return seasons
-
-
-def getChallengesFromParentNodes(progressResult, all_data, firstChar, parentNodes):
-    triumphs = [None] * totalChallenges
-    loop_count = 0
+    triumphs = []
 
     for item in progressResult.json()['Response']['characterRecords']['data'][firstChar]['records']:
         if len(list(all_data['DestinyRecordDefinition'][int(item)]['parentNodeHashes'])) > 0:
@@ -122,28 +65,13 @@ def getChallengesFromParentNodes(progressResult, all_data, firstChar, parentNode
                                                     apiObj['complete'],
                                                     apiObj['objectiveHash']))
 
-                triumphs[loop_count] = Triumph(record['index'],
-                                               record['displayProperties']['name'],
-                                               record['displayProperties']['description'],
-                                               objectives,
-                                               "http://www.bungie.net" + record['displayProperties']['icon'])
+                triumphs.append(Triumph(record['index'],
+                                        record['displayProperties']['name'],
+                                        record['displayProperties']['description'],
+                                        objectives,
+                                        "http://www.bungie.net" + record['displayProperties']['icon']))
 
-                loop_count += 1
-
-    # Clear None values, None values occur if there is a week of challenges that has not yet been released
-    fixedList = []
-
-    for t in triumphs:
-        if t != None:
-            fixedList.append(t)
-
-    return fixedList
-
-
-class Season():
-    def __init__(self, title, triumphs):
-        self.title = title
-        self.triumphs = triumphs
+    return triumphs
 
 
 class Triumph():

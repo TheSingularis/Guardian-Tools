@@ -1,4 +1,4 @@
-<div class="col-12 col-md-6 col-lg-6 col-xl-4">
+<div class="col-12 col-sm-6 col-lg-4 col-xl-3">
     <div class="card p-3 mb-2 bg-light">
         <div class="d-flex justify-content-between">
             <div class="d-flex flex-row align-items-center">
@@ -27,7 +27,7 @@
                 <div class="progress bg-dark mt-1">
                     <div class="progress-bar" role="progressbar" style="width: {{objective.getCompletionString()}}%;" aria-valuenow=" {{ objective.getProgressValue() }}" aria-valuemin="0" aria-valuemax="{{ objective.completionValue }}">
                         &nbsp;
-                        {{ objective.getProgressValue() }} of {{ objective.completionValue }} - {{ objective.progressDescription }}
+                        {{ objective.getProgressValue() }} of {{ objective.completionValue }} {{ objective.progressDescription }}
                         &nbsp;
                     </div>
                 </div>

@@ -1,42 +1,49 @@
-from os import access
+from model.Progression_Management import *
+from model.Inventory_Management import *
+from model.Account_Management import *
+from os import path, sys
 from flask import Flask, abort, request, redirect, url_for, render_template, session
-from flask_bootstrap import Bootstrap
-from datetime import datetime, timedelta
 import pickle
 import requests
-import requests.auth
-import json
-import time
 import urllib
 
-from Account_Management import *
-from Inventory_Management import *
-from Progression_Management import *
+sys.path.append('../model')
+
 
 # Initialize the app
 app = Flask(__name__)
 app.secret_key = '-yeM18EccWjLD935ZTC-cg0ohkpNPJm5xYFV9AlsBk-'
-bootstrap = Bootstrap(app)
 
 oauth_session = requests.Session()
 
 API_KEY = '55afdf046d1b4ce4bf124a3fc86438b8'
 CLIENT_ID = '39035'
-CLIENT_SECRET = 'g0ohkpNPJm5xYFV9AlsBk--yeM18EccWjLD935ZTC-c'
 HEADERS = {'X-API-Key': API_KEY}
 
-base_url = 'https://bungie.net/Platform/Destiny2/'
-REDIRECT_URI = 'https://localhost:5000/callback/bungie'
+BASE_URL = 'https://bungie.net/Platform/Destiny2/'
+REDIRECT_URL = 'https://localhost:5000/callback/bungie'
 AUTH_URL = 'https://www.bungie.net/en/OAuth/Authorize?client_id='+CLIENT_ID+'&response_type=code&'
-access_token_url = 'https://www.bungie.net/Platform/App/OAuth/token/'
-refresh_token_url = access_token_url
+TOKEN_URL = 'https://www.bungie.net/Platform/App/OAuth/token/'
 
+# -------------------------
+# -----Handle Manifest-----
+# -------------------------
+
+if not path.exists('data/manifest.pickle'):
+    print("Manifest is missing...")
+    import get_manifest
+else:
+    print("Manifest Found...")
 
 # Open Manifest:
 print("Opening Manifest...")
 with open('data/manifest.pickle', 'rb') as data:
     all_data = pickle.load(data)
 print("Finished!")
+
+# -----------------
+# -----Routing-----
+# -----------------
 
 
 @app.route('/')
@@ -52,30 +59,18 @@ def dashboard():
 
 
 @app.route('/seasonal')
-@app.route('/seasonal/<seasonSlug>')
-def seasonal(seasonSlug="risen"):
+def seasonal():
     setAccountSession()
 
     accountSummary = GetAccountInfo(oauth_session, session.get('membershipType'), session.get('destinyMembershipId'))
 
     progress = getProgress(oauth_session, session.get('membershipType'), session.get('destinyMembershipId'))
-    seasons = parseProgress(oauth_session, progress, all_data, GetCharId(oauth_session, session, 0))
+    triumphs = parseProgress(oauth_session, progress, all_data, GetCharId(oauth_session, session, 0))
 
     characters = GetCharacters(accountSummary, all_data)
 
-    thisSeason = None
-
-    for s in seasons:
-        if seasonSlug in s.title.lower():
-            thisSeason = s
-
-    # If no season is set, default to the first in the list
-    if thisSeason == None:
-        thisSeason = seasons[0]
-        print("Seasonal Error: No SLUG Entered")
-
     return render_template('seasonal.html',
-                           season=thisSeason,
+                           triumphs=triumphs,
                            characters=characters
                            )
 
@@ -85,7 +80,7 @@ def vault():
     setAccountSession()
 
     accountSummary = GetAccountInfo(oauth_session, session.get('membershipType'), session.get('destinyMembershipId'))
-    vault = getVault(oauth_session, session.get('membershipType'), session.get('destinyMembershipId'))
+    vault = getVault(oauth_session, session['membershipType'], session.get('destinyMembershipId'))
     weaponList = parseVault(oauth_session, vault, all_data)
 
     firstChar = list(accountSummary.json()['Response']['characters']['data'])[0]
@@ -138,17 +133,15 @@ def check_login():
 
         # Check bungie server status
         cause = None
-        error = False
 
         # TODO: find a way to check if the service is up or not, this aint it chief
         # if "Endpoint not found." in oauth_session.get(base_url).text:
         #    # Servers are down
         #    cause = 'bungieServer'
-        #    error = True
 
         print(f"Error Redirect: {cause}")
 
-        if error == True:
+        if cause != None:
             print("error")
             return redirect(url_for('errorReport', cause=cause), code=302)
 
@@ -166,10 +159,9 @@ def check_login():
 
                 return redirect(url, code=302)
 
-
-# --------------------------------------------------
-# Routing above, Functions below
-# --------------------------------------------------
+# -------------------
+# -----Functions-----
+# -------------------
 
 
 def setAccountSession():
@@ -180,9 +172,9 @@ def setAccountSession():
     return
 
 
+# Generate a random string for the state parameter
+# Save it for use later to prevent CSRF attacks
 def make_authorization_url():
-    # Generate a random string for the state parameter
-    # Save it for use later to prevent xsrf attacks
     from uuid import uuid4
     state = str(uuid4())
     save_created_state(state)
@@ -194,10 +186,10 @@ def get_token(code):
     post_data = {'grant_type': 'authorization_code',
                  'code': code,
                  'client_id': CLIENT_ID}
-    response = requests.post(access_token_url, data=post_data, json=post_data, headers=AUTH_HEADERS)
+    response = requests.post(TOKEN_URL, data=post_data, json=post_data, headers=AUTH_HEADERS)
     token_json = response.json()['access_token']
-    #refresh_json = response.json()['refresh_token']
-    refresh_expired = datetime.now() + timedelta(seconds=int(response.json()['expires_in']))
+    # refresh_json = response.json()['refresh_token']
+    # refresh_expired = datetime.now() + timedelta(seconds=int(response.json()['expires_in']))
     save_session(token_json)
     return token_json
 

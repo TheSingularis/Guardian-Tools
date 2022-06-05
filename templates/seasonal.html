@@ -5,8 +5,6 @@
     {% include 'charactersBlock.html' %}
     -->
 
-    <h1>{{season.title}}</h1>
-
     <div class="seasonal-container">
         <div class="accordion" id="triumphAccordion">
             <div class="card">
@@ -19,19 +17,15 @@
                 </div>
                 <div id="collapseInProgress" class="collapse show" aria-labelledby="headingInProgress" data-parent="#triumphAccordion">
                     <div class="card-body">
-                        <!--
-                        <div class="container mt-5 mb-3">
-                        -->
-                        <div class="row">
-                            {% for triumph in season.triumphs %}
-                            {% if not triumph.getComplete() %}
-                            {% include 'triumphCard.html' %}
-                            {% endif %}
-                            {% endfor %}
+                        <div class="container container-fluid mt-5 mb-3">
+                            <div class="row">
+                                {% for triumph in triumphs %}
+                                {% if not triumph.getComplete() %}
+                                {% include 'triumphCard.html' %}
+                                {% endif %}
+                                {% endfor %}
+                            </div>
                         </div>
-                        <!--
-                        </div>
-                        -->
                     </div>
                 </div>
             </div>
@@ -45,19 +39,15 @@
                 </div>
                 <div id="collapseCompleted" class="collapse" aria-labelledby="headingCompleted" data-parent="#triumphAccordion">
                     <div class="card-body">
-                        <!--
                         <div class="container mt-5 mb-3">
-                        -->
-                        <div class="row">
-                            {% for triumph in season.triumphs %}
-                            {% if triumph.getComplete() %}
-                            {% include 'triumphCard.html' %}
-                            {% endif %}
-                            {% endfor %}
+                            <div class="row">
+                                {% for triumph in triumphs %}
+                                {% if triumph.getComplete() %}
+                                {% include 'triumphCard.html' %}
+                                {% endif %}
+                                {% endfor %}
+                            </div>
                         </div>
-                        <!--
-                        </div>
-                        -->
                     </div>
                 </div>
             </div>
