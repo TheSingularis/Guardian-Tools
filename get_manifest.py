@@ -23,13 +23,17 @@ hash_dict = {
 
 
 def get_manifest():
-    manifest_url = 'http://www.bungie.net/Platform/Destiny2/Manifest/'
     # get the manifest location from the json
+    manifest_url = 'http://www.bungie.net/Platform/Destiny2/Manifest/'
     r = requests.get(manifest_url)
     manifest = r.json()
     mani_url = 'http://www.bungie.net'+manifest['Response']['mobileWorldContentPaths']['en']
     # Download the file, write it to manifest-zip
     r = requests.get(mani_url)
+
+    if not os.path.exists('data'):
+        os.makedirs('data')
+
     with open("data/manifest-zip", "wb") as zip:
         zip.write(r.content)
     print("Download Complete!")
