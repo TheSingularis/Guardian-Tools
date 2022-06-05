@@ -1,5 +1,6 @@
 /__pycache__/*
 /data/manifest.*
+/data/**
 /test/*
 
 *.cpython-38.pyc
